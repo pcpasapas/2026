@@ -1,0 +1,40 @@
+<?php
+
+use App\Http\Controllers\ComposantsController;
+use App\Http\Controllers\configurateurController;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return Inertia::render('Accueil', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+    ]);
+});
+
+Route::get('/configurateur', [configurateurController::class, 'index']);
+Route::get('/configurateur/composants', [configurateurController::class, 'composants']);
+    Route::get('/configurateur/composants/choix/{categorie}', [ComposantsController::class, 'index'])->name("composantsChoix.index");
+Route::get('/configurateur/jeux', [configurateurController::class, 'games']);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+});
