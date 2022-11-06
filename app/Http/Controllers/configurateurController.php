@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Alimentation;
 use App\Models\Categorie;
 use App\Models\Game;
+use App\Models\Panier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\DB;
 
 class configurateurController extends Controller
 {
@@ -20,9 +22,14 @@ class configurateurController extends Controller
         ]);
     }
     public function composants (Request $request) {
+
+
+// Test database connection
+        $panier = Panier::find(1)->boitier;
         $categories = Categorie::all();
         return Inertia::render('Configurateur', [
-            'categories' => $categories
+            'categories' => $categories,
+            'panier' => $panier
         ]);
     }
 

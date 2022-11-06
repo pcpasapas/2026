@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ComposantsController;
 use App\Http\Controllers\configurateurController;
+use App\Http\Controllers\PaniersController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,6 +29,9 @@ Route::get('/configurateur', [configurateurController::class, 'index']);
 Route::get('/configurateur/composants', [configurateurController::class, 'composants']);
     Route::get('/configurateur/composants/choix/{categorie}', [ComposantsController::class, 'index'])->name("composantsChoix.index");
 Route::get('/configurateur/jeux', [configurateurController::class, 'games']);
+
+Route::get('/panier', [PaniersController::class, 'index']) ->name('panier');
+Route::put('/panier/1', [PaniersController::class, 'add']) ->name('panier');
 
 Route::middleware([
     'auth:sanctum',

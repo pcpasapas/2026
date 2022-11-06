@@ -87,7 +87,7 @@
                                     class="choisir"
                                     @click="
                                         ajoutPanier(
-                                            categorie.id,
+                                            categorie.progBDD,
                                             composant.id,
                                             composant.name,
                                             composant.prix
@@ -108,20 +108,21 @@
 
 <script>
 import headerComponent from "../Layouts/headerComponent.vue";
-import { useCategoriesStore } from "../stores/categories";
-import { useBoitiersStore } from "../stores/composants/boitiers";
-import { useAlimsStore } from "../stores/composants/alimentations";
-import { useProcesseurStore } from "../stores/composants/processeurs";
+// import { useCategoriesStore } from "../stores/categories";
+// import { useBoitiersStore } from "../stores/composants/boitiers";
+// import { useAlimsStore } from "../stores/composants/alimentations";
+// import { useProcesseurStore } from "../stores/composants/processeurs";
 import { usePanierStore } from "../stores/panier";
-import { useCarteMereStore } from "../stores/composants/cartemere";
-import { useRamStore } from "../stores/composants/ram";
-import { useCartegraphiqueStore } from "../stores/composants/cartegraphique";
-import { useSsdStore } from "../stores/composants/ssd";
-import { useHddStore } from "../stores/composants/hdd";
+// import { useCarteMereStore } from "../stores/composants/cartemere";
+// import { useRamStore } from "../stores/composants/ram";
+// import { useCartegraphiqueStore } from "../stores/composants/cartegraphique";
+// import { useSsdStore } from "../stores/composants/ssd";
+// import { useHddStore } from "../stores/composants/hdd";
 import composantCard from "../Components/templatesComposants/composantCard.vue";
 import panierComponent from "../Components/Perso/panierComponent.vue";
 import { Link } from "@inertiajs/inertia-vue3";
 import { InertiaLink } from "@inertiajs/inertia-vue3";
+import axios from "axios";
 
 export default {
     props: [
@@ -132,13 +133,14 @@ export default {
         "games",
         "composants",
         "categorieChoisi",
+        "panier",
     ],
     data() {
         return {
             // categories: useCategoriesStore().getAllCategories,
             categorieChoisie: "",
             bouton: "+",
-            panier: usePanierStore(),
+            // panier: usePanierStore(),
             panierDetail: usePanierStore().getAllPanier,
             versionTable: 0,
             jeu: false,
@@ -146,8 +148,6 @@ export default {
         };
     },
     mounted() {
-        console.log(this.alimentations);
-        console.log(this.composants);
     },
     methods: {
         composantRetirePanier() {
@@ -179,10 +179,15 @@ export default {
             );
             this.updateTable();
         },
-        ajoutPanier(categorie, composant) {
-            this.updateTable();
-            this.panier.modifStorePanier(categorie, composant);
-            this.categorieChoisie = "";
+        async ajoutPanier(categorie, composant) {
+            console.log(categorie, composant)
+            await axios.put('/panier/1', {categorie, composant}).then((response) =>
+            {
+                this.versionTable++
+            }).catch((err) => console.log(err))
+            // this.updateTable();
+            // this.panier.modifStorePanier(categorie, composant);
+            // this.categorieChoisie = "";
         },
         affiche(prog) {
             const boutons = document.querySelectorAll("#bouton");
