@@ -415,12 +415,12 @@
     "file": "assets/app.7469b476.css",
     "src": "resources/js/app.css"
   },
-  "headerComponent.css": {
-    "file": "assets/headerComponent.a81c575e.css",
-    "src": "headerComponent.css"
-  },
   "resources/js/Pages/Configurateur.css": {
     "file": "assets/Configurateur.adb1f164.css",
     "src": "resources/js/Pages/Configurateur.css"
+  },
+  "headerComponent.css": {
+    "file": "assets/headerComponent.a81c575e.css",
+    "src": "headerComponent.css"
   }
 }
