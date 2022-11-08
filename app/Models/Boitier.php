@@ -11,4 +11,7 @@ class Boitier extends Model
     public function panier() {
         return $this->hasOne(Panier::class);
     }
+    public function categorie() {
+        return $this->belongsTo(Categorie::class);
+    }
 }

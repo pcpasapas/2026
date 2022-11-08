@@ -1,19 +1,21 @@
+<!-- eslint-disable vue/no-reserved-component-names -->
+<!-- eslint-disable no-undef -->
 <script>
-import { Head, Link } from "@inertiajs/inertia-vue3";
-import logoComponent from "../Components/Perso/logoComponent.vue";
-import NavbarComponent from "../Components/Perso/navbarComponent.vue";
-import Dropdown from "../Components/Dropdown.vue";
-import DropdownLink from "../Components/DropdownLink.vue";
-import { Inertia } from "@inertiajs/inertia";
+import { Head, Link } from '@inertiajs/inertia-vue3'
+import logoComponent from '../Components/Perso/logoComponent.vue'
+import NavbarComponent from '../Components/Perso/navbarComponent.vue'
+import Dropdown from '../Components/Inertia/Dropdown.vue'
+import DropdownLink from '../Components/Inertia/DropdownLink.vue'
+import { Inertia } from '@inertiajs/inertia'
 export default {
     props: {
         canLogin: Boolean,
-        canRegister: Boolean,
+        canRegister: Boolean
     },
     methods: {
         logout() {
-            Inertia.post(route("logout"));
-        },
+            Inertia.post(route('logout'))
+        }
     },
     components: {
         logoComponent,
@@ -21,9 +23,9 @@ export default {
         Link,
         Head,
         Dropdown,
-        DropdownLink,
-    },
-};
+        DropdownLink
+    }
+}
 </script>
 
 <template>
@@ -102,15 +104,17 @@ export default {
                 <Link
                     :href="route('login')"
                     class="text-sm text-gray-700 dark:text-gray-500 underline"
-                    >Se connecter</Link
                 >
+                    Se connecter
+                </Link>
 
                 <Link
                     v-if="canRegister"
                     :href="route('register')"
                     class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline"
-                    >Créer un compte</Link
                 >
+                    Créer un compte
+                </Link>
             </template>
         </div>
         <div class="">

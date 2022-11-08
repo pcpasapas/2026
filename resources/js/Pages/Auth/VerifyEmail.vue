@@ -1,9 +1,11 @@
+<!-- eslint-disable no-undef -->
+<!-- eslint-disable vue/require-default-prop -->
 <script setup>
 import { computed } from 'vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
-import AuthenticationCard from '@/Components/AuthenticationCard.vue';
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
+import AuthenticationCard from '@/Components/Inertia/AuthenticationCard.vue';
+import AuthenticationCardLogo from '@/Components/Inertia/AuthenticationCardLogo.vue';
+import PrimaryButton from '@/Components/Inertia/PrimaryButton.vue';
 
 const props = defineProps({
     status: String,
@@ -45,7 +47,8 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
                         :href="route('profile.show')"
                         class="underline text-sm text-gray-600 hover:text-gray-900"
                     >
-                        Edit Profile</Link>
+                        Edit Profile
+                    </Link>
 
                     <Link
                         :href="route('logout')"

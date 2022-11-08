@@ -1,13 +1,14 @@
 <script setup>
 import { Head, useForm } from '@inertiajs/inertia-vue3';
-import AuthenticationCard from '@/Components/AuthenticationCard.vue';
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+import AuthenticationCard from '@/Components/Inertia/AuthenticationCard.vue';
+import AuthenticationCardLogo from '@/Components/Inertia/AuthenticationCardLogo.vue';
+import InputError from '@/Components/Inertia/InputError.vue';
+import InputLabel from '@/Components/Inertia/InputLabel.vue';
+import PrimaryButton from '@/Components/Inertia/PrimaryButton.vue';
+import TextInput from '@/Components/Inertia/TextInput.vue';
 
 defineProps({
+    // eslint-disable-next-line vue/require-default-prop
     status: String,
 });
 
@@ -16,6 +17,7 @@ const form = useForm({
 });
 
 const submit = () => {
+    // eslint-disable-next-line no-undef
     form.post(route('password.email'));
 };
 </script>

@@ -31,7 +31,7 @@ Route::get('/configurateur/composants', [configurateurController::class, 'compos
 Route::get('/configurateur/jeux', [configurateurController::class, 'games']);
 
 Route::get('/panier', [PaniersController::class, 'index']) ->name('panier');
-Route::put('/panier/1', [PaniersController::class, 'add']) ->name('panier');
+Route::put('/panier/1', [PaniersController::class, 'add']) ->name('panier.update');
 
 Route::middleware([
     'auth:sanctum',

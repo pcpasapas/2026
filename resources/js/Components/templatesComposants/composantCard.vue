@@ -9,7 +9,9 @@ export default {
 
 <template>
     <div class="composant" @click="toggleAgrandir">
-        <h3 v-if="composant.marque">{{ composant.marque }}</h3>
+        <h3 v-if="composant.marque">
+            {{ composant.marque }}
+        </h3>
         <h3>{{ composant.name }}</h3>
         <h4 v-if="composant.socket !== undefined">
             Socket : {{ composant.socket }}
@@ -38,7 +40,7 @@ export default {
                 v-if="this.categorie.prog === undefined"
                 :src="'../img/' + categorie + '/' + composant.id + '.jpg'"
             />
-            <p class="prix">{{ composant.prix.toFixed(2) }} €</p>
+            <p class="prix">{{ (composant.prix.toFixed(2)/100) }} €</p>
         </div>
     </div>
 </template>

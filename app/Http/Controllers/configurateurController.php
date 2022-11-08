@@ -22,9 +22,6 @@ class configurateurController extends Controller
         ]);
     }
     public function composants (Request $request) {
-
-
-// Test database connection
         $panier = Panier::find(1)->boitier;
         $categories = Categorie::all();
         return Inertia::render('Configurateur', [

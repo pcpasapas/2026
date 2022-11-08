@@ -7,9 +7,7 @@
         @reset="reset"
         @updateTable="updateTable"
         @composantRetirePanier="composantRetirePanier"
-        :key="versionTable"
-        :panier="this.panier"
-        :produitspanier="this.panierDetail"
+        :panier="panierReact"
     ></panierComponent>
     <!-- choix en fonction d'un jeu -->
     <div>
@@ -32,42 +30,48 @@
     <!-- choix en fonction des composants -->
     <div>
         <ul>
-            <Link href="/configurateur/composants">
+            <InertiaLink href="/configurateur/composants">
                 <li class="liMenuCategorie">
-                    <span
-                        >Choix d'une configuration en fonction des
-                        composants</span
-                    >
+                    <span>
+                        Choix d'une configuration en fonction des composants
+                    </span>
                 </li>
-            </Link>
+            </InertiaLink>
         </ul>
     </div>
     <!-- affichage categories -->
-    <div v-if="categories !== null">
+    <div v-if="categories !== null"></div>
+    <div v-if="loading === false">
         <ul
             class="ulCategorie"
             v-for="categorie in categories"
             :key="categorie.id"
         >
-            <div>
-                <InertiaLink :key="categorie.prog"
-                    :href="
-                        route('composantsChoix.index', {
-                            categorie: categorie.prog,
-                        })
-                    "
+            <div
+                v-if="
+                    panierReact.value[categorie.id - 1] === undefined ||
+                    panierReact.value[categorie.id - 1] === null ||
+                    panierReact.value[categorie.id - 1] === ''
+                "
+            >
+                <a
+                    :key="categorie.prog"
+                    @click="composantsAffiche(categorie.prog)"
                 >
                     <li class="liCategorie">
                         <span>{{ categorie.name }}</span>
+                        <p>{{ panierReact.value[categorie.id - 1] }}</p>
                     </li>
-                </InertiaLink>
-            </div>
-            <div>
-                <ul class="ulComposant" v-if="categorie.prog === categorieChoisi" >
+                </a>
+
+                <ul
+                    class="ulComposant"
+                    v-if="categorie.prog === categorieChoisie"
+                >
                     <li
                         class="composant"
-                        v-for="composant in composants"
-                        v-bind:key="composant.id"
+                        v-for="composant in composantsAffiches"
+                        :key="composant.id"
                     >
                         {{ composant.name }}
                         <div class="composantBoutons">
@@ -80,8 +84,8 @@
                                     class="choisir"
                                     :href="composant.lien"
                                     target="_blank"
-                                    >🔍</a
-                                >
+                                    >🔍
+                                </a>
                                 <button
                                     alt="Ajouter au panier"
                                     class="choisir"
@@ -89,8 +93,8 @@
                                         ajoutPanier(
                                             categorie.progBDD,
                                             composant.id,
-                                            composant.name,
-                                            composant.prix
+                                            categorie.prog,
+                                            categorie.modelBDD
                                         )
                                     "
                                 >
@@ -103,160 +107,176 @@
             </div>
         </ul>
     </div>
-
 </template>
 
 <script>
-import headerComponent from "../Layouts/headerComponent.vue";
-// import { useCategoriesStore } from "../stores/categories";
-// import { useBoitiersStore } from "../stores/composants/boitiers";
-// import { useAlimsStore } from "../stores/composants/alimentations";
-// import { useProcesseurStore } from "../stores/composants/processeurs";
-import { usePanierStore } from "../stores/panier";
-// import { useCarteMereStore } from "../stores/composants/cartemere";
-// import { useRamStore } from "../stores/composants/ram";
-// import { useCartegraphiqueStore } from "../stores/composants/cartegraphique";
-// import { useSsdStore } from "../stores/composants/ssd";
-// import { useHddStore } from "../stores/composants/hdd";
-import composantCard from "../Components/templatesComposants/composantCard.vue";
-import panierComponent from "../Components/Perso/panierComponent.vue";
-import { Link } from "@inertiajs/inertia-vue3";
-import { InertiaLink } from "@inertiajs/inertia-vue3";
-import axios from "axios";
+import headerComponent from '../Layouts/headerComponent.vue'
+import { usePanierStore } from '../stores/panier'
+import composantCard from '../Components/templatesComposants/composantCard.vue'
+import panierComponent from '../Components/Perso/panierComponent.vue'
+import { Link, InertiaLink } from '@inertiajs/inertia-vue3'
+import axios from 'axios'
+import { onMounted, reactive, ref } from 'vue'
+// import { computed } from 'vue'
 
 export default {
     props: [
-        "canLogin",
-        "canRegister",
-        "alimentations",
-        "categories",
-        "games",
-        "composants",
-        "categorieChoisi",
-        "panier",
+        'canLogin',
+        'canRegister',
+        'alimentations',
+        'categories',
+        'games',
+        'composants',
+        'categorieChoisi'
     ],
     data() {
         return {
-            // categories: useCategoriesStore().getAllCategories,
-            categorieChoisie: "",
-            bouton: "+",
-            // panier: usePanierStore(),
-            panierDetail: usePanierStore().getAllPanier,
+            categorieChoisie: '',
+            bouton: '+',
+            // panierDetail: {},
             versionTable: 0,
             jeu: false,
             enFctComposants: false,
-        };
+            composantsAffiches: {}
+        }
     },
-    mounted() {
+    setup() {
+        let panierReact = reactive({})
+        let loading = ref()
+
+        const mounted = onMounted(async () => {
+            await axios.get('/panier').then((response) => {
+                panierReact.value = response.data
+                console.log(panierReact)
+                loading.value = false
+            })
+        })
+        const ajoutPanier = async (
+            categorie,
+            composant,
+            categorieProg,
+            modelBDD
+        ) => {
+            await axios
+                .put('/panier/1', {
+                    categorie,
+                    composant,
+                    categorieProg,
+                    modelBDD
+                })
+                .then((response) => {
+                    panierReact.value = response.data
+                    return panierReact
+                })
+                .catch((err) => console.log(err))
+        }
+        return { panierReact, mounted, ajoutPanier, loading }
     },
     methods: {
         composantRetirePanier() {
-            this.enFctComposants = true;
+            this.enFctComposants = true
         },
         reset() {
-            this.versionTable++,
-                (this.panierDetail = usePanierStore().getAllPanier);
-            this.categorieChoisie = "";
-            this.enFctComposants = false;
-            this.jeu = false;
+            this.versionTable++
+            this.panierDetail = usePanierStore().getAllPanier
+            this.categorieChoisie = ''
+            this.enFctComposants = false
+            this.jeu = false
         },
         updateTable() {
-            this.panierDetail = usePanierStore().getAllPanier;
-            this.versionTable++;
-            this.categorieChoisie = "";
+            this.panierDetail = usePanierStore().getAllPanier
+            this.versionTable++
+            this.categorieChoisie = ''
         },
         panierGtaV() {
             usePanierStore().modifStorePanier(
                 [0, 1, 2, 3, 4, 5, 6],
                 [1, 1, 3, 3, 2, 1, 1]
-            );
-            this.updateTable();
+            )
+            this.updateTable()
         },
         panierFlight() {
             usePanierStore().modifStorePanier(
                 [0, 1, 2, 3, 4, 5, 6],
                 [1, 1, 4, 3, 2, 1, 1]
-            );
-            this.updateTable();
+            )
+            this.updateTable()
         },
-        async ajoutPanier(categorie, composant) {
-            console.log(categorie, composant)
-            await axios.put('/panier/1', {categorie, composant}).then((response) =>
-            {
-                this.versionTable++
-            }).catch((err) => console.log(err))
-            // this.updateTable();
-            // this.panier.modifStorePanier(categorie, composant);
-            // this.categorieChoisie = "";
+        composantsAffiche(categorie) {
+            console.log(categorie)
+            axios
+                .get(`/configurateur/composants/choix/${categorie}`)
+                .then((response) => {
+                    this.composantsAffiches = response.data.composants
+                    this.categorieChoisie = response.data.categorieChoisi
+                    console.table(this.categorieChoisie)
+                })
         },
         affiche(prog) {
-            const boutons = document.querySelectorAll("#bouton");
-            boutons.forEach(function (boutons) {
-                boutons.innerHTML = "+";
-            });
-            console.log(prog, this.jeu);
-            if (prog === "jeu") {
+            console.log(prog, this.jeu)
+            if (prog === 'jeu') {
                 if (this.jeu === false) {
-                    this.enFctComposants = false;
-                    this.categorieChoisie = "";
-                    this.jeu = true;
-                    return this.jeu;
+                    this.enFctComposants = false
+                    this.categorieChoisie = ''
+                    this.jeu = true
+                    return this.jeu
                 } else {
-                    this.jeu = false;
-                    return this.jeu;
+                    this.jeu = false
+                    return this.jeu
                 }
             }
-            if (prog === "enFctComposants") {
+            if (prog === 'enFctComposants') {
                 if (this.enFctComposants === false) {
-                    this.categorieChoisie = "";
-                    this.enFctComposants = true;
+                    this.categorieChoisie = ''
+                    this.enFctComposants = true
                 } else {
-                    this.enFctComposants = false;
-                    return this.jeu;
+                    this.enFctComposants = false
+                    return this.jeu
                 }
             }
             if (this.categorieChoisie === prog) {
-                this.jeu = false;
-                this.categorieChoisie = "";
+                this.jeu = false
+                this.categorieChoisie = ''
             } else {
-                this.jeu = false;
-                this.categorieChoisie = prog;
-                if (prog === "boitiers") {
-                    this.composants = useBoitiersStore().getAllBoitiers;
-                } else if (prog === "alim") {
-                    this.composants = useAlimsStore().getAllAlims;
-                } else if (prog === "processeur") {
-                    this.composants =
-                        useProcesseurStore().getAllProcesseursSocket;
-                } else if (prog === "carteMere") {
-                    this.composants =
-                        useCarteMereStore().getAllCarteMeresSocket;
-                } else if (prog === "ram") {
-                    this.composants = useRamStore().getAllRam;
-                } else if (prog === "carteGraphique") {
-                    this.composants =
-                        useCartegraphiqueStore().getAllCartegraphiques;
-                } else if (prog === "ssd") {
-                    this.composants = useSsdStore().getAllSsd;
-                } else if (prog === "hdd") {
-                    this.composants = useHddStore().getAllHdd;
-                }
+                this.jeu = false
+                this.categorieChoisie = prog
+                // if (prog === "boitiers") {
+                //     this.composants = useBoitiersStore().getAllBoitiers;
+                // } else if (prog === "alim") {
+                //     this.composants = useAlimsStore().getAllAlims;
+                // } else if (prog === "processeur") {
+                //     this.composants =
+                //         useProcesseurStore().getAllProcesseursSocket;
+                // } else if (prog === "carteMere") {
+                //     this.composants =
+                //         useCarteMereStore().getAllCarteMeresSocket;
+                // } else if (prog === "ram") {
+                //     this.composants = useRamStore().getAllRam;
+                // } else if (prog === "carteGraphique") {
+                //     this.composants =
+                //         useCartegraphiqueStore().getAllCartegraphiques;
+                // } else if (prog === "ssd") {
+                //     this.composants = useSsdStore().getAllSsd;
+                // } else if (prog === "hdd") {
+                //     this.composants = useHddStore().getAllHdd;
             }
-            return this.composants;
-        },
+
+            // return this.composants;
+        }
     },
     components: {
         headerComponent,
         panierComponent,
         composantCard,
+        // eslint-disable-next-line vue/no-reserved-component-names
         Link,
         InertiaLink
-    },
-};
+    }
+}
 </script>
 
 <style scoped>
-.liCategorie{
+.liCategorie {
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -278,7 +298,6 @@ export default {
     font-size: large;
     font-weight: 700;
 }
-
 
 .choisir {
     margin: auto;

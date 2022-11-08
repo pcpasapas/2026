@@ -2,7 +2,7 @@
     <headerComponent :canLogin="canLogin" :canRegister="canRegister"></headerComponent>
 </template>
 
-<script>
+<script lang="js">
 import headerComponent from '../Layouts/headerComponent.vue'
 export default {
     props:['canLogin', 'canRegister'],
