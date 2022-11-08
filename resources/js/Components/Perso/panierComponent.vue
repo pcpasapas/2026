@@ -1,14 +1,16 @@
 <script>
 import axios from 'axios'
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 
 export default {
-    props: ['panier'],
+    props: ['panier', 'loading'],
     emits: ['composantRetirePanier', 'reset'],
     setup(props) {
+        let Loading = ref(props.loading)
         let Panier = reactive(props.panier)
         return {
-            Panier
+            Panier,
+            Loading
         }
     },
     data() {
@@ -19,14 +21,21 @@ export default {
     },
     computed: {
         fnPrixTotalPanier() {
+            this.Loading = true
             this.prixTotalPanier = 0
             console.log(this.Panier.value)
-            if (this.Panier.value !== undefined) {
+            if (this.Panier.value !== undefined && this.Panier.value !== null) {
                 for (let i = 0; i < this.Panier.value.length; i++) {
-                    console.log(this.Panier.value[i].prix)
-                    this.prixTotalPanier += this.Panier.value[i].prix / 100
+                    if (
+                        this.Panier.value[i] !== null &&
+                        this.Panier.value[i] !== ''
+                    ) {
+                        this.prixTotalPanier += this.Panier.value[i].prix / 100
+                    }
+                    this.Loading = false
                 }
             }
+            this.Loading = false
             return this.prixTotalPanier.toFixed(2)
         }
     },
@@ -34,11 +43,12 @@ export default {
     mounted() {},
 
     methods: {
-        async retirerproduit(categorie, composant) {
+        async retirerproduit(categorie) {
             await axios
-                .put('/panier/1', { categorie, composant })
+                .put('/panier/1', { categorie, undefined })
                 .then((response) => {
                     this.Panier.value = response.data
+                    this.fnPrixTotalPanier
                 })
                 .catch((err) => console.log(err))
         },
@@ -52,52 +62,61 @@ export default {
 </script>
 
 <template>
-    <div class="panier">
+    <div class="panier" v-if="fnPrixTotalPanier != 0.00">
         <p class="selection">Votre sélection</p>
-        <div v-for="produit in Panier.value" :key="produit.id">
-            <div class="composant" v-if="produit !== ''">
-                <tbody>
-                    <tr>
-                        <td class="col1">
-                            <img
-                                :src="
-                                    '../img/' +
-                                    produit.categorie.prog +
-                                    '/' +
-                                    produit.id +
-                                    '.jpg'
-                                "
-                            />
-                        </td>
 
-                        <td class="col2">
-                            <p>{{ produit.name }}</p>
-                        </td>
-                        <td class="col3">{{ (produit.prix / 100) }} €</td>
-                        <td class="col4">
-                            <button
-                                @click="
-                                    retirerproduit(
-                                        produit.categorie.progBDD,
-                                        null
-                                    )
-                                "
-                            >
-                                X
-                            </button>
-                        </td>
+        <div v-if="!Loading">
+            <div v-if="this.Panier.value !== ''">
+                <div v-for="(produit, index) in Panier.value" :key="index">
+                    <div
+                        class="composant"
+                        v-if="produit !== '' && produit !== null"
+                    >
+                        <tbody>
+                            <tr>
+                                <td class="col1">
+                                    <img
+                                        :src="
+                                            '../img/' +
+                                            produit.categorie.prog +
+                                            '/' +
+                                            produit.id +
+                                            '.jpg'
+                                        "
+                                    />
+                                </td>
+
+                                <td class="col2">
+                                    <p>{{ produit.name }}</p>
+                                </td>
+                                <td class="col3">{{ produit.prix / 100 }} €</td>
+                                <td class="col4">
+                                    <button
+                                        @click="
+                                            retirerproduit(
+                                                produit.categorie.progBDD
+                                            )
+                                        "
+                                    >
+                                        X
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </div>
+                </div>
+                <div class="prixTotal" v-if="fnPrixTotalPanier !== 0.0">
+                    <tr>
+                        <td>Prix total</td>
+                        <td>{{ fnPrixTotalPanier }} €</td>
                     </tr>
-                </tbody>
+                    <tr>
+                        <button class="reset" @click="resetPanier()">
+                            Reset
+                        </button>
+                    </tr>
+                </div>
             </div>
-        </div>
-        <div class="prixTotal">
-            <tr>
-                <td>Prix total</td>
-                <td>{{ fnPrixTotalPanier }} €</td>
-            </tr>
-            <tr>
-                <button class="reset" @click="resetPanier()">Reset</button>
-            </tr>
         </div>
     </div>
 </template>

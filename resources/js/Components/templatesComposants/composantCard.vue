@@ -40,7 +40,7 @@ export default {
                 v-if="this.categorie.prog === undefined"
                 :src="'../img/' + categorie + '/' + composant.id + '.jpg'"
             />
-            <p class="prix">{{ (composant.prix.toFixed(2)/100) }} €</p>
+            <p class="prix">{{ (composant.prix/100).toFixed(2) }} €</p>
         </div>
     </div>
 </template>

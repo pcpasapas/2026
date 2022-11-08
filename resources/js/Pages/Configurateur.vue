@@ -8,6 +8,7 @@
         @updateTable="updateTable"
         @composantRetirePanier="composantRetirePanier"
         :panier="panierReact"
+        :loading="loading"
     ></panierComponent>
     <!-- choix en fonction d'un jeu -->
     <div>
@@ -131,7 +132,6 @@ export default {
     ],
     data() {
         return {
-            categorieChoisie: '',
             bouton: '+',
             // panierDetail: {},
             versionTable: 0,
@@ -143,6 +143,7 @@ export default {
     setup() {
         let panierReact = reactive({})
         let loading = ref()
+        let categorieChoisie =ref('')
 
         const mounted = onMounted(async () => {
             await axios.get('/panier').then((response) => {
@@ -157,6 +158,7 @@ export default {
             categorieProg,
             modelBDD
         ) => {
+
             await axios
                 .put('/panier/1', {
                     categorie,
@@ -166,11 +168,12 @@ export default {
                 })
                 .then((response) => {
                     panierReact.value = response.data
+                    categorieChoisie.value = ''
                     return panierReact
                 })
                 .catch((err) => console.log(err))
         }
-        return { panierReact, mounted, ajoutPanier, loading }
+        return { panierReact, mounted, ajoutPanier, loading, categorieChoisie }
     },
     methods: {
         composantRetirePanier() {
@@ -211,57 +214,6 @@ export default {
                     this.categorieChoisie = response.data.categorieChoisi
                     console.table(this.categorieChoisie)
                 })
-        },
-        affiche(prog) {
-            console.log(prog, this.jeu)
-            if (prog === 'jeu') {
-                if (this.jeu === false) {
-                    this.enFctComposants = false
-                    this.categorieChoisie = ''
-                    this.jeu = true
-                    return this.jeu
-                } else {
-                    this.jeu = false
-                    return this.jeu
-                }
-            }
-            if (prog === 'enFctComposants') {
-                if (this.enFctComposants === false) {
-                    this.categorieChoisie = ''
-                    this.enFctComposants = true
-                } else {
-                    this.enFctComposants = false
-                    return this.jeu
-                }
-            }
-            if (this.categorieChoisie === prog) {
-                this.jeu = false
-                this.categorieChoisie = ''
-            } else {
-                this.jeu = false
-                this.categorieChoisie = prog
-                // if (prog === "boitiers") {
-                //     this.composants = useBoitiersStore().getAllBoitiers;
-                // } else if (prog === "alim") {
-                //     this.composants = useAlimsStore().getAllAlims;
-                // } else if (prog === "processeur") {
-                //     this.composants =
-                //         useProcesseurStore().getAllProcesseursSocket;
-                // } else if (prog === "carteMere") {
-                //     this.composants =
-                //         useCarteMereStore().getAllCarteMeresSocket;
-                // } else if (prog === "ram") {
-                //     this.composants = useRamStore().getAllRam;
-                // } else if (prog === "carteGraphique") {
-                //     this.composants =
-                //         useCartegraphiqueStore().getAllCartegraphiques;
-                // } else if (prog === "ssd") {
-                //     this.composants = useSsdStore().getAllSsd;
-                // } else if (prog === "hdd") {
-                //     this.composants = useHddStore().getAllHdd;
-            }
-
-            // return this.composants;
         }
     },
     components: {
