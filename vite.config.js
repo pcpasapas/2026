@@ -1,12 +1,12 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
-import mkcert from 'vite-plugin-mkcert'
+import basicSsl from '@vitejs/plugin-basic-ssl'
 
 export default defineConfig({
     server: { https: true },
     plugins: [
-        mkcert,
+        basicSsl,
         laravel({
             input: 'resources/js/app.js',
             refresh: true,
