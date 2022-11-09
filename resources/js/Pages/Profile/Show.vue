@@ -7,6 +7,7 @@ import SectionBorder from '@/Components/Inertia/SectionBorder.vue';
 import TwoFactorAuthenticationForm from '@/Pages/Profile/Partials/TwoFactorAuthenticationForm.vue';
 import UpdatePasswordForm from '@/Pages/Profile/Partials/UpdatePasswordForm.vue';
 import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfileInformationForm.vue';
+import HeaderComponent from '../../Layouts/headerComponent.vue';
 
 defineProps({
     confirmsTwoFactorAuthentication: Boolean,
@@ -15,6 +16,7 @@ defineProps({
 </script>
 
 <template>
+    <HeaderComponent></HeaderComponent>
     <AppLayout title="Profile">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
