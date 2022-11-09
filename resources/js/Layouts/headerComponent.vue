@@ -6,7 +6,6 @@ import logoComponent from '../Components/Perso/logoComponent.vue'
 import NavbarComponent from '../Components/Perso/navbarComponent.vue'
 import Dropdown from '../Components/Inertia/Dropdown.vue'
 import DropdownLink from '../Components/Inertia/DropdownLink.vue'
-import ResponsiveNavLink from '../Components/Inertia/ResponsiveNavLink.vue'
 import { Inertia } from '@inertiajs/inertia'
 export default {
     props: {
@@ -30,7 +29,6 @@ export default {
         Head,
         Dropdown,
         DropdownLink,
-        ResponsiveNavLink
     }
 }
 </script>
@@ -87,72 +85,10 @@ export default {
             </div>
 
             <template v-else>
-                <div class="-mr-2 flex items-center">
-                    <div class="block sm:hidden">
-                        <button
-                            class="block inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition"
-                            @click="
-                                showingNavigationDropdown =
-                                    !showingNavigationDropdown
-                            "
-                        >
-                            <svg
-                                class="h-6 w-6"
-                                stroke="currentColor"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    :class="{
-                                        hidden: showingNavigationDropdown,
-                                        'inline-flex':
-                                            !showingNavigationDropdown
-                                    }"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M4 6h16M4 12h16M4 18h16"
-                                />
-                                <path
-                                    :class="{
-                                        hidden: !showingNavigationDropdown,
-                                        'inline-flex': showingNavigationDropdown
-                                    }"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12"
-                                />
-                            </svg>
-                        </button>
-                        <div
-                            :class="{
-                                block: showingNavigationDropdown,
-                                hidden: !showingNavigationDropdown
-                            }"
-                            class="sm:hidden text-xs"
-                        >
-                            <div class="pt-2 pb-3 space-y-1">
-                                <ResponsiveNavLink
-                                    :href="route('login')"
-                                    :active="route().current('login')"
-                                >
-                                    Se connecter
-                                </ResponsiveNavLink>
-                                <ResponsiveNavLink
-                                    :href="route('register')"
-                                    :active="route().current('register')"
-                                >
-                                    Créer un compte
-                                </ResponsiveNavLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="hidden sm:block">
+                <div class="flex justify-center flex-col">
                     <Link
                         :href="route('login')"
-                        class="text-sm text-gray-700 dark:text-gray-500 underline"
+                        class="text-xl px-3 m-3 text-center text-gray-700 dark:text-gray-500 bg-blue-400 rounded-full"
                     >
                         Se connecter
                     </Link>
@@ -160,7 +96,7 @@ export default {
                     <Link
                         v-if="canRegister"
                         :href="route('register')"
-                        class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline"
+                        class="text-xl px-3 m-3 text-center text-gray-700 dark:text-gray-500 bg-blue-400 rounded-full"
                     >
                         Créer un compte
                     </Link>
@@ -176,3 +112,8 @@ export default {
         </div>
     </div>
 </template>
+
+<style>
+
+
+</style>
