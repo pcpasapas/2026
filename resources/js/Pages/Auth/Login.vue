@@ -4,12 +4,12 @@
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3'
 import AuthenticationCard from '@/Components/Inertia/AuthenticationCard.vue'
-import AuthenticationCardLogo from '@/Components/Inertia/AuthenticationCardLogo.vue'
 import Checkbox from '@/Components/Inertia/Checkbox.vue'
 import InputError from '@/Components/Inertia/InputError.vue'
 import InputLabel from '@/Components/Inertia/InputLabel.vue'
 import PrimaryButton from '@/Components/Inertia/PrimaryButton.vue'
 import TextInput from '@/Components/Inertia/TextInput.vue'
+import ApplicationMark from '../../Components/Inertia/ApplicationMark.vue'
 
 defineProps({
     canResetPassword: Boolean,
@@ -38,7 +38,7 @@ const submit = () => {
 
     <AuthenticationCard>
         <template #logo>
-            <AuthenticationCardLogo />
+            <ApplicationMark />
         </template>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
