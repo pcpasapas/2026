@@ -186,7 +186,7 @@ const logout = () => {
                             :href="route('accueil')"
                             :active="route().current('accueil')"
                         >
-                            Accueil
+                            Revenir à l'accueil
                         </ResponsiveNavLink>
                     </div>
 
