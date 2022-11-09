@@ -1,5 +1,5 @@
 <template>
-    <img src="../../img/PcpasaPas.png" />
+    <img :src="'../img/PcpasaPas.png'" />
 </template>
 
 <style scoped>
