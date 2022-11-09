@@ -2,12 +2,12 @@
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3'
 import AuthenticationCard from '@/Components/Inertia/AuthenticationCard.vue'
-import AuthenticationCardLogo from '@/Components/Inertia/AuthenticationCardLogo.vue'
 import Checkbox from '@/Components/Inertia/Checkbox.vue'
 import InputError from '@/Components/Inertia/InputError.vue'
 import InputLabel from '@/Components/Inertia/InputLabel.vue'
 import PrimaryButton from '@/Components/Inertia/PrimaryButton.vue'
 import TextInput from '@/Components/Inertia/TextInput.vue'
+import ApplicationMark from '../../Components/Inertia/ApplicationMark.vue'
 
 const form = useForm({
     name: '',
@@ -29,12 +29,12 @@ const submit = () => {
 
     <AuthenticationCard>
         <template #logo>
-            <AuthenticationCardLogo />
+            <ApplicationMark />
         </template>
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="name" value="Name" />
+                <InputLabel for="name" value="Prénom" />
                 <TextInput
                     id="name"
                     v-model="form.name"
@@ -60,7 +60,7 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
+                <InputLabel for="password" value="Mot de passe" />
                 <TextInput
                     id="password"
                     v-model="form.password"
@@ -75,7 +75,7 @@ const submit = () => {
             <div class="mt-4">
                 <InputLabel
                     for="password_confirmation"
-                    value="Confirm Password"
+                    value="Confirmez le mot de passe"
                 />
                 <TextInput
                     id="password_confirmation"
@@ -128,7 +128,7 @@ const submit = () => {
                     :href="route('login')"
                     class="underline text-sm text-gray-600 hover:text-gray-900"
                 >
-                    Already registered?
+                    Vous avez déjà un compte ?
                 </Link>
 
                 <PrimaryButton
