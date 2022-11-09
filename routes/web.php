@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ComposantsController;
 use App\Http\Controllers\configurateurController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PaniersController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +24,9 @@ Route::get('/', function () {
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
     ]);
-});
+}) ->name('accueil');
+
+Route::get('/tutoriels', [PagesController::class, 'tutoriels']);
 
 Route::get('/configurateur', [configurateurController::class, 'index']);
 Route::get('/configurateur/composants', [configurateurController::class, 'composants']);

@@ -44,11 +44,7 @@ export default {
                             v-if="$page.props.jetstream.managesProfilePhotos"
                             class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition"
                         >
-                            <img
-                                class="h-8 w-8 rounded-full object-cover"
-                                :src="$page.props.user.profile_photo_url"
-                                :alt="$page.props.user.name"
-                            />
+                            {{ $page.props.user.name }}
                         </button>
 
                         <span v-else class="inline-flex rounded-md">
@@ -79,13 +75,6 @@ export default {
 
                         <DropdownLink :href="route('profile.show')">
                             Votre profil
-                        </DropdownLink>
-
-                        <DropdownLink
-                            v-if="$page.props.jetstream.hasApiFeatures"
-                            :href="route('api-tokens.index')"
-                        >
-                            API Tokens
                         </DropdownLink>
 
                         <div class="border-t border-gray-100" />

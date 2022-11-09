@@ -6,11 +6,11 @@ import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
-import { createPinia, setActivePinia } from "pinia";
+// import { createPinia, setActivePinia } from "pinia";
 
-const pinia = createPinia();
-setActivePinia(pinia);
-export default { pinia };
+// const pinia = createPinia();
+// setActivePinia(pinia);
+// export default { pinia };
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
@@ -21,7 +21,7 @@ createInertiaApp({
         return createApp({ render: () => h(app, props) })
             .use(plugin)
             .use(ZiggyVue)
-            .use(pinia)
+            // .use(pinia)
             .mount(el);
     },
 });
