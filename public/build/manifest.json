@@ -426,20 +426,20 @@
     "file": "assets/app.7fef44e0.css",
     "src": "resources/js/app.css"
   },
-  "headerComponent.css": {
-    "file": "assets/headerComponent.debeb7b7.css",
-    "src": "headerComponent.css"
+  "AppLayout.css": {
+    "file": "assets/AppLayout.d73f2efb.css",
+    "src": "AppLayout.css"
   },
   "resources/js/Pages/Configurateur.css": {
     "file": "assets/Configurateur.adb1f164.css",
     "src": "resources/js/Pages/Configurateur.css"
   },
+  "headerComponent.css": {
+    "file": "assets/headerComponent.debeb7b7.css",
+    "src": "headerComponent.css"
+  },
   "resources/js/Pages/Tutoriels.css": {
     "file": "assets/Tutoriels.5258d4a8.css",
     "src": "resources/js/Pages/Tutoriels.css"
-  },
-  "AppLayout.css": {
-    "file": "assets/AppLayout.d73f2efb.css",
-    "src": "AppLayout.css"
   }
 }
