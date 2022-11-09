@@ -9,7 +9,7 @@
 <style scoped>
 @media (max-width: 800px) {
   img {
-    margin: auto;
+    margin: 20px;
     width: 150px;
     height: 150px;
    

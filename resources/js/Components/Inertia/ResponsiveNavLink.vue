@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/require-default-prop -->
 <script setup>
 import { computed } from 'vue';
 import { Link } from '@inertiajs/inertia-vue3';

@@ -13,7 +13,6 @@ export default {
         <Link href="/">Accueil</Link>
         <Link href="/configurateur">Configurateur </Link>
         <Link href="/tutoriels">Tutoriels</Link>
-        <Link href="/alims">Api</Link>
     </nav>
 </template>
 
