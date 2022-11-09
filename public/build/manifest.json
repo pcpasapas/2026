@@ -440,13 +440,13 @@
     "file": "assets/AppLayout.8d66636c.css",
     "src": "AppLayout.css"
   },
-  "resources/js/Pages/Tutoriels.css": {
-    "file": "assets/Tutoriels.5258d4a8.css",
-    "src": "resources/js/Pages/Tutoriels.css"
-  },
   "headerComponent.css": {
     "file": "assets/headerComponent.a81c575e.css",
     "src": "headerComponent.css"
+  },
+  "resources/js/Pages/Tutoriels.css": {
+    "file": "assets/Tutoriels.5258d4a8.css",
+    "src": "resources/js/Pages/Tutoriels.css"
   },
   "resources/js/Pages/Configurateur.css": {
     "file": "assets/Configurateur.adb1f164.css",
