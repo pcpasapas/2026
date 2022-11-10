@@ -16,7 +16,7 @@ export default {
 <template>
     <headerComponent></headerComponent>
     <button class="catCompar" @click="changeCat(1)">Boitier</button>
-    <button class="catCompar">Alimentation</button>
+    <button class="catCompar" @click="changeCat(2)">Alimentation</button>
     <button class="catCompar">Processeur</button>
     <div v-if="categorie === 1">
         <p class="titre">Le boitier</p>
@@ -130,9 +130,127 @@ export default {
             </div>
         </section>
     </div>
+    <div v-if="categorie === 2">
+        <p class="titre">L'alimentation</p>
+        <section class="section">
+            <p class="titreSection">
+                Qu'est ce que l'alimentation d'un ordinateur ?
+            </p>
+            <div class="contenuSection">
+                <p>
+                    L'alimentation fournit du courant à tous les composants de
+                    l'ordinateur. L'alimentation doit avoir une puissance
+                    suffisante pour alimenter les différents périphériques de ce
+                    dernier.
+                </p>
+                <p>
+                    Aujourd'hui, la norme ATX est la norme d'alimentation des
+                    cartes mères ATX et micro-ATX, qui représentent la grande
+                    majorité des PC vendus dans le monde. La norme ATX comprend
+                    :
+                </p>
+
+                <ul>
+                    <li>- Connecteur principal ATX 2x12 broches</li>
+                    <li>- Connecteur déporté 2x2 broches "P4"</li>
+                    <li>
+                        - 1 ou plusieurs connecteurs d'alimentation périphérique
+                        (Molex / Mini-Molex ou SATA).
+                    </li>
+                </ul>
+
+                <p>
+                    Pour choisir votre alimentation vous allez prendre en
+                    considération sa puissance, sa taille, ses connecteurs
+                    disponibles.
+                </p>
+            </div>
+        </section>
+        <section class="section">
+            <p class="titreSection">
+                Comment choisir la puissance de votre alimentation PC ?
+            </p>
+            <div class="contenuSection">
+                <p>
+                    La puissance d'une alimentation est donnée en Watts,
+                    généralement de 350W à plus de 1000W pour les grosses
+                    configurations. Les composants qui consomment le plus sont
+                    le processeur et la carte graphique.
+                </p>
+                <p>
+                    Généralement, pour calculer la puissance nécéssaire
+                    simplement on prend la consommation processeur (ex : AMD
+                    Ryzen™ 7 7700X => 105 W), puis la consommation de la carte
+                    graphique (ex : GeForce RTX 2070 => 185 W) que l'on
+                    multiplie par 2.
+                </p>
+                <div class="border-2 text-center">
+                    Ce qui donne pour cette configuration :
+                    <p>(105 + 185) * 2 = 580 W</p>
+                </div>
+                <p>
+                    Dans ce cas votre alimentation devra être d'une puissance
+                    supérieure à 580 W. Cette valeur doit être vérifiée plus
+                    précisément mais elle nous donne une bonne estimation de la
+                    puissance nécessaire pour votre alimentation.
+                </p>
+            </div>
+        </section>
+        <section class="section">
+            <p class="titreSection">
+                Configurateurs de puissances d'alimentations en ligne
+            </p>
+            <p>
+                Les principaux constructeurs d'alimentations ont mis en ligne
+                des outils pour pouvoir connaitre la puissance nécessaire en
+                fonction des composants qui constituent votre configuration.
+            </p>
+            <div class="liens">
+                <a
+                    class="a"
+                    href="https://www.evga.com/power-meter/"
+                    target="_blank"
+                    >EVGA</a
+                >
+
+                <a
+                    class="a"
+                    href="https://www.bequiet.com/fr/psucalculator/quick"
+                    target="_blank"
+                >
+                    BeQUIET
+                </a>
+            </div>
+        </section>
+        <section class="section">
+            <p class="titreSection">Les connectiques de votre alimentation</p>
+            <p>
+                Le standard est ATX pour brancher votre carte mère, il faudra
+                surtout faire attention à ce que votre alimentation puisse
+                accueillir la connectique de votre carte graphique qui peut
+                varier. Vérifiez la connectique nécessaire sur le site du
+                fabriquant de votre carte graphique.
+            </p>
+            <div class="liens">
+                <a
+                    class="a"
+                    href="https://www.nvidia.com/fr-fr/geforce/graphics-cards/"
+                    target="_blank"
+                    >Nvidia</a
+                >
+
+                <a
+                    class="a"
+                    href="https://www.amd.com/fr/graphics/radeon-rx-graphics"
+                    target="_blank"
+                    >AMD</a
+                >
+            </div>
+        </section>
+    </div>
 </template>
 
-<style>
+<style scoped>
 .design {
     display: flex;
     justify-content: space-around;
@@ -165,5 +283,16 @@ export default {
 .contenuSection {
     margin: 10px;
     text-align: justify;
+}
+.liens {
+    display: flex;
+}
+.a {
+    width: 50%;
+    border-radius: 50%;
+    text-align: center;
+    background-color: bisque;
+    padding: 10px;
+    margin: 1px;
 }
 </style>
