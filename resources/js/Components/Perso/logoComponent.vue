@@ -2,7 +2,7 @@
 
 <template>
   <div class="">
-    <img :src="'/img/PcPasaPas.png'" />
+    <img :src="'/img/PcPasaPas.png'" alt="logo" />
   </div>
 </template>
 

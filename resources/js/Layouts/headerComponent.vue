@@ -88,14 +88,14 @@ export default {
                 <div class="flex justify-center flex-col">
                     <Link
                         :href="route('login')"
-                        class="text-xl px-3 m-3 text-center text-gray-700 dark:text-gray-500 bg-blue-400 rounded-full"
+                        class="text-xl px-3 m-3 text-center text-white dark:text-gray-500 bg-blue-400 rounded-full"
                     >
                         Se connecter
                     </Link>
 
                     <Link
                         :href="route('register')"
-                        class="text-xl px-3 m-3 text-center text-gray-700 dark:text-gray-500 bg-blue-400 rounded-full"
+                        class="text-xl px-3 m-3 text-center text-white dark:text-gray-500 bg-blue-400 rounded-full"
                     >
                         Créer un compte
                     </Link>
