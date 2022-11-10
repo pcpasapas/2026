@@ -426,14 +426,6 @@
     "file": "assets/app.8bbdd53c.css",
     "src": "resources/js/app.css"
   },
-  "resources/js/Pages/Tutoriels.css": {
-    "file": "assets/Tutoriels.18ca1ef9.css",
-    "src": "resources/js/Pages/Tutoriels.css"
-  },
-  "resources/js/Pages/Configurateur.css": {
-    "file": "assets/Configurateur.1fb805bd.css",
-    "src": "resources/js/Pages/Configurateur.css"
-  },
   "headerComponent.css": {
     "file": "assets/headerComponent.debeb7b7.css",
     "src": "headerComponent.css"
@@ -441,5 +433,13 @@
   "resources/js/Pages/Comparateur.css": {
     "file": "assets/Comparateur.9729049f.css",
     "src": "resources/js/Pages/Comparateur.css"
+  },
+  "resources/js/Pages/Configurateur.css": {
+    "file": "assets/Configurateur.1fb805bd.css",
+    "src": "resources/js/Pages/Configurateur.css"
+  },
+  "resources/js/Pages/Tutoriels.css": {
+    "file": "assets/Tutoriels.18ca1ef9.css",
+    "src": "resources/js/Pages/Tutoriels.css"
   }
 }
