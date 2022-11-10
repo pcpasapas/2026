@@ -12,13 +12,11 @@ class ComposantsController extends Controller
 {
     public function index(Request $request, $categorie) {
         if ($categorie === "alims") {
-            $composants = Alimentation::all();
-
+            $composants = Alimentation::orderBy('prix', 'ASC')->get();
         }
         else if ($categorie === "boitiers") {
-            $composants = Boitier::all();
+            $composants = Boitier::orderBy('prix', 'ASC')->get();
         }
-
         return [
             'composants' => $composants,
             'categorieChoisi' => $categorie,

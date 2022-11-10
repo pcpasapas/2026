@@ -1,15 +1,18 @@
 <script>
 export default {
-    props: ["composant", "categorie"],
+    props: ['composant', 'categorie'],
     methods: {
-        toggleAgrandir() {},
-    },
-};
+        toggleAgrandir() {}
+    }
+}
 </script>
 
 <template>
     <div class="composant" @click="toggleAgrandir">
-        <h3 v-if="composant.marque">
+        <h3 v-if="composant.gamer == true" class="gamer">
+            GAMER
+        </h3>
+        <h3 v-if="composant.marque !== undefined">
             {{ composant.marque }}
         </h3>
         <h3>{{ composant.name }}</h3>
@@ -28,6 +31,12 @@ export default {
         <h4 v-if="composant.memoire !== undefined">
             Mémoire : {{ composant.memoire }}
         </h4>
+        <h4 v-if="composant.taille_text !== undefined">
+            {{ composant.taille_text }}
+        </h4>
+        <h4 v-if="composant.format_cm !== ''">
+            Carte mère : {{ composant.format_cm }}
+        </h4>
         <h4 v-if="composant.taille !== undefined">
             Taille : {{ composant.taille }}
         </h4>
@@ -38,14 +47,27 @@ export default {
             />
             <img
                 v-if="this.categorie.prog === undefined"
-                :src="'../img/' + categorie + '/' + composant.id + '.jpg'"
+                :src="'/img/' + categorie + '/' + composant.id + '.jpg'"
             />
-            <p class="prix">{{ (composant.prix/100).toFixed(2) }} €</p>
+            <p class="prix">{{ (composant.prix / 100).toFixed(2) }} €</p>
         </div>
     </div>
 </template>
 
 <style scoped>
+.gamer {
+    position: absolute;
+    color: white;
+    padding: 1px;
+    margin-top: 3px;
+    background: rgb(70, 251, 63);
+    border-radius: 30px;
+    background: radial-gradient(
+        circle,
+        rgba(70, 251, 63, 1) 0%,
+        rgba(121, 131, 167, 1) 100%
+    );
+}
 .prixImage {
     display: flex;
     align-items: center;

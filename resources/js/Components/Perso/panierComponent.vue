@@ -77,7 +77,7 @@ export default {
                                 <td class="col1">
                                     <img
                                         :src="
-                                            '../img/' +
+                                            '/img/' +
                                             produit.categorie.prog +
                                             '/' +
                                             produit.id +

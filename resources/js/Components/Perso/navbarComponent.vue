@@ -11,7 +11,8 @@ export default {
 <template>
     <nav>
         <Link href="/">Accueil</Link>
-        <Link href="/configurateur">Configurateur </Link>
+        <Link href="/comparateur">Composants</Link>
+        <Link href="/configurateur">Configurateur</Link>
         <Link href="/tutoriels">Tutoriels</Link>
     </nav>
 </template>

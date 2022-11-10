@@ -74,7 +74,6 @@
                         v-for="composant in composantsAffiches"
                         :key="composant.id"
                     >
-                        {{ composant.name }}
                         <div class="composantBoutons">
                             <composant-card
                                 :composant="composant"
@@ -210,6 +209,7 @@ export default {
             axios
                 .get(`/configurateur/composants/choix/${categorie}`)
                 .then((response) => {
+                    console.log(response)
                     this.composantsAffiches = response.data.composants
                     this.categorieChoisie = response.data.categorieChoisi
                     console.table(this.categorieChoisie)

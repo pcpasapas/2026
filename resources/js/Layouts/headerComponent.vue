@@ -38,7 +38,7 @@ export default {
     <div
         class="relative flex items-top justify-center bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0"
     >
-        <div v-if="canLogin" class="fixed top-0 right-0 px-0 sm:px-6 py-4">
+        <div class="fixed top-0 right-0 px-0 sm:px-6 py-4">
             <div class="ml-3 mr-0 relative sm:block" v-if="$page.props.user">
                 <Dropdown align="right" width="48">
                     <template #trigger>
@@ -94,7 +94,6 @@ export default {
                     </Link>
 
                     <Link
-                        v-if="canRegister"
                         :href="route('register')"
                         class="text-xl px-3 m-3 text-center text-gray-700 dark:text-gray-500 bg-blue-400 rounded-full"
                     >

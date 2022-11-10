@@ -28,6 +28,8 @@ Route::get('/', function () {
 
 Route::get('/tutoriels', [PagesController::class, 'tutoriels']);
 
+Route::get('/comparateur', [PagesController::class, 'comparateur']);
+
 Route::get('/configurateur', [configurateurController::class, 'index']);
 Route::get('/configurateur/composants', [configurateurController::class, 'composants']);
     Route::get('/configurateur/composants/choix/{categorie}', [ComposantsController::class, 'index'])->name("composantsChoix.index");

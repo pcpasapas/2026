@@ -7,7 +7,7 @@ import InputError from '@/Components/Inertia/InputError.vue'
 import InputLabel from '@/Components/Inertia/InputLabel.vue'
 import PrimaryButton from '@/Components/Inertia/PrimaryButton.vue'
 import TextInput from '@/Components/Inertia/TextInput.vue'
-import ApplicationMark from '../../Components/Inertia/ApplicationMark.vue'
+import HeaderComponent from '../../Layouts/headerComponent.vue'
 
 const form = useForm({
     name: '',
@@ -26,12 +26,8 @@ const submit = () => {
 
 <template>
     <Head title="Register" />
-
+    <HeaderComponent></HeaderComponent>
     <AuthenticationCard>
-        <template #logo>
-            <ApplicationMark />
-        </template>
-
         <form @submit.prevent="submit">
             <div>
                 <InputLabel for="name" value="Prénom" />

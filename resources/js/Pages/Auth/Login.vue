@@ -9,7 +9,7 @@ import InputError from '@/Components/Inertia/InputError.vue'
 import InputLabel from '@/Components/Inertia/InputLabel.vue'
 import PrimaryButton from '@/Components/Inertia/PrimaryButton.vue'
 import TextInput from '@/Components/Inertia/TextInput.vue'
-import ApplicationMark from '../../Components/Inertia/ApplicationMark.vue'
+import HeaderComponent from '../../Layouts/headerComponent.vue'
 
 defineProps({
     canResetPassword: Boolean,
@@ -34,13 +34,10 @@ const submit = () => {
 
 <template>
     <!-- eslint-disable vue/singleline-html-element-content-newline -->
+    <HeaderComponent></HeaderComponent>
     <Head title="Log in" />
 
     <AuthenticationCard>
-        <template #logo>
-            <ApplicationMark />
-        </template>
-
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
         </div>

@@ -1,11 +1,11 @@
 <script setup>
 import { Head, useForm } from '@inertiajs/inertia-vue3';
 import AuthenticationCard from '@/Components/Inertia/AuthenticationCard.vue';
-import AuthenticationCardLogo from '@/Components/Inertia/AuthenticationCardLogo.vue';
 import InputError from '@/Components/Inertia/InputError.vue';
 import InputLabel from '@/Components/Inertia/InputLabel.vue';
 import PrimaryButton from '@/Components/Inertia/PrimaryButton.vue';
 import TextInput from '@/Components/Inertia/TextInput.vue';
+import HeaderComponent from '../../Layouts/headerComponent.vue';
 
 defineProps({
     // eslint-disable-next-line vue/require-default-prop
@@ -24,14 +24,11 @@ const submit = () => {
 
 <template>
     <Head title="Forgot Password" />
+    <headerComponent></headerComponent>
 
     <AuthenticationCard>
-        <template #logo>
-            <AuthenticationCardLogo />
-        </template>
-
         <div class="mb-4 text-sm text-gray-600">
-            Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.
+            Vous avez oublié votre mot de passe ? Pas de problème. Donnez juste votre e-mail et nous vous fournirons un lien par e-mail pour en choisir un nouveau.
         </div>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
@@ -54,7 +51,7 @@ const submit = () => {
 
             <div class="flex items-center justify-end mt-4">
                 <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Email Password Reset Link
+                    M'envoyer un lien de réactivation
                 </PrimaryButton>
             </div>
         </form>
