@@ -20,6 +20,14 @@
                 </p>
             </a>
         </div>
+        <div class="menu">
+            <a href="/tutoriels">
+                <p>Tutoriels</p>
+                <p class="text-xs">
+                    Apprendre des astuces dans le montage d'un pc ainsi que dans la programmation
+                </p>
+            </a>
+        </div>
     </div>
 </template>
 
