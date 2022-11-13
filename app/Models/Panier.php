@@ -20,5 +20,17 @@ class Panier extends Model
     public function carteMere() {
         return $this->belongsTo(CarteMere::class);
     }
-    protected $fillable = ['boitier_id', 'alimentation_id','processeur_id','carte_mere_id'];
+    public function ram() {
+        return $this->belongsTo(Ram::class);
+    }
+    public function carteGraphique() {
+        return $this->belongsTo(CarteGraphique::class);
+    }
+    public function ssd() {
+        return $this->belongsTo(Ssd::class);
+    }
+    public function hdd() {
+        return $this->belongsTo(Hdd::class);
+    }
+    protected $fillable = ['boitier_id', 'alimentation_id','processeur_id','carte_mere_id', 'ram_id', 'carte_graphique_id', 'ssd_id', 'hdd_id'];
 }

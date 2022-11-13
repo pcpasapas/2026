@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Alimentation;
 use App\Models\Boitier;
+use App\Models\CarteGraphique;
 use App\Models\CarteMere;
 use App\Models\Categorie;
+use App\Models\Hdd;
 use App\Models\Panier;
 use App\Models\Processeur;
+use App\Models\Ram;
+use App\Models\Ssd;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -44,6 +48,18 @@ class ComposantsController extends Controller
             } else {
                 $composants = CarteMere::orderBy('prix', 'ASC')->get(); 
             }
+        }
+        else if ($categorie === "ram") {
+            $composants = Ram::orderBy('prix', 'ASC')->get();
+        }
+        else if ($categorie === "cartesGraphiques") {
+            $composants = CarteGraphique::orderBy('prix', 'ASC')->get();
+        }
+        else if ($categorie === "ssd") {
+            $composants = Ssd::orderBy('prix', 'ASC')->get();
+        }
+        else if ($categorie === "hdd") {
+            $composants = Hdd::orderBy('prix', 'ASC')->get();
         }
         return [
             'composants' => $composants,

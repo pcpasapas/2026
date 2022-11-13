@@ -30,7 +30,42 @@ class PaniersController extends Controller
                 else {
                     $processeur = null;
                 }
-            return [$boitier, $alimentation, $processeur];
+                if ($panier->carteMere) {
+                    $carteMere = $panier->carteMere;
+                    $categorie = $carteMere->categorie;
+                    } 
+                    else {
+                        $carteMere = "";
+                    }
+                if ($panier->ram) {
+                    $ram = $panier->ram;
+                    $categorie = $ram->categorie;
+                    } 
+                    else {
+                        $ram = "";
+                    }
+                if ($panier->carteGraphique) {
+                    $carteGraphique = $panier->carteGraphique;
+                    $categorie = $carteGraphique->categorie;
+                    } 
+                    else {
+                        $carteGraphique = "";
+                    }
+                if ($panier->ssd) {
+                    $ssd = $panier->ssd;
+                    $categorie = $ssd->categorie;
+                    } 
+                    else {
+                        $ssd = "";
+                    }
+                    if ($panier->hdd) {
+                        $hdd = $panier->hdd;
+                        $categorie = $hdd->categorie;
+                        } 
+                        else {
+                            $hdd = "";
+                        }
+                        return [$boitier, $alimentation, $processeur, $carteMere, $ram, $carteGraphique, $ssd, $hdd];
     }
 
     public function add (Request $request) {
@@ -66,6 +101,34 @@ class PaniersController extends Controller
             else {
                 $carteMere = "";
             }
-        return [$boitier, $alimentation, $processeur, $carteMere];
+        if ($panier->ram) {
+            $ram = $panier->ram;
+            $categorie = $ram->categorie;
+            } 
+            else {
+                $ram = "";
+            }
+        if ($panier->carteGraphique) {
+            $carteGraphique = $panier->carteGraphique;
+            $categorie = $carteGraphique->categorie;
+            } 
+            else {
+                $carteGraphique = "";
+            }
+        if ($panier->ssd) {
+            $ssd = $panier->ssd;
+            $categorie = $ssd->categorie;
+            } 
+            else {
+                $ssd = "";
+            }
+            if ($panier->hdd) {
+                $hdd = $panier->hdd;
+                $categorie = $hdd->categorie;
+                } 
+                else {
+                    $hdd = "";
+                }
+        return [$boitier, $alimentation, $processeur, $carteMere, $ram, $carteGraphique, $ssd, $hdd];
     }
 }

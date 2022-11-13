@@ -158,6 +158,7 @@ export default {
             categorieProg,
             modelBDD
         ) => {
+            console.log(composant)
             await axios
                 .put('/panier/1', {
                     categorie,
@@ -166,6 +167,7 @@ export default {
                     modelBDD
                 })
                 .then((response) => {
+                    console.log(response.data)
                     panierReact.value = response.data
                     categorieChoisie.value = ''
                     return panierReact
