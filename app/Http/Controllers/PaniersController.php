@@ -23,7 +23,14 @@ class PaniersController extends Controller
             else {
                 $alimentation = null;
             }
-            return [$boitier, $alimentation];
+            if ($panier->processeur) {
+                $processeur = $panier->processeur;
+                $categorie = $processeur->categorie;
+                } 
+                else {
+                    $processeur = null;
+                }
+            return [$boitier, $alimentation, $processeur];
     }
 
     public function add (Request $request) {
@@ -45,6 +52,20 @@ class PaniersController extends Controller
         else {
             $alimentation = "";
         }
-        return [$boitier, $alimentation];
+        if ($panier->processeur) {
+            $processeur = $panier->processeur;
+            $categorie = $processeur->categorie;
+            } 
+            else {
+                $processeur = "";
+            }
+        if ($panier->carteMere) {
+            $carteMere = $panier->carteMere;
+            $categorie = $carteMere->categorie;
+            } 
+            else {
+                $carteMere = "";
+            }
+        return [$boitier, $alimentation, $processeur, $carteMere];
     }
 }

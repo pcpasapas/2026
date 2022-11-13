@@ -14,5 +14,11 @@ class Panier extends Model
     public function alimentation() {
         return $this->belongsTo(Alimentation::class);
     }
-    protected $fillable = ['boitier_id', 'alimentation_id'];
+    public function processeur() {
+        return $this->belongsTo(Processeur::class);
+    }
+    public function carteMere() {
+        return $this->belongsTo(CarteMere::class);
+    }
+    protected $fillable = ['boitier_id', 'alimentation_id','processeur_id','carte_mere_id'];
 }

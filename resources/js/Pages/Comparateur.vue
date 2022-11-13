@@ -17,9 +17,13 @@ export default {
     <headerComponent></headerComponent>
     <button class="catCompar" @click="changeCat(1)">Boitier</button>
     <button class="catCompar" @click="changeCat(2)">Alimentation</button>
-    <button class="catCompar">Processeur</button>
+    <button class="catCompar" @click="changeCat(3)">Processeur</button>
     <div v-if="categorie === 1">
         <p class="titre">Le boitier</p>
+        <div class="flex justify-around">
+            <img :src="'/img/comparateur/boitiers/1.jpg'" />
+            <img :src="'/img/comparateur/boitiers/2.jpg'" />
+        </div>
         <section class="section">
             <p class="titreSection">
                 Qu'est ce que le boitier d'un ordinateur ?
@@ -54,7 +58,7 @@ export default {
                 <p>
                     C'est le plus grand des boitiers, il vous permettra
                     d'accueillir toutes les configurations. Toutes les tailles
-                    de cartes mères: E-ATX, ATX, Mini ATX, Micro ATX, mais aussi
+                    de cartes mères: E-ATX, ATX, Micro ATX, Mini ITX, mais aussi
                     les cartes graphiques de grande taille en général plus de
                     30cm. Il contient aussi un grand nombre d'emplacements pour
                     vos disques durs, vos ventilateurs...
@@ -91,7 +95,7 @@ export default {
                 <p>
                     C'est le boitier le plus compact avec lequel vous pourrez
                     configurer un PC évolutif et performant. Il acceuille en
-                    général seulement les cartes mères Mini-ATX et Micro-Atx.
+                    général seulement les cartes mères et Micro-Atx Mini-ITX
                     Attention aussi à la taille de votre carte graphique et de
                     vos ventilateurs.
                 </p>
@@ -132,6 +136,10 @@ export default {
     </div>
     <div v-if="categorie === 2">
         <p class="titre">L'alimentation</p>
+        <div class="flex justify-around">
+            <img :src="'/img/comparateur/alimentations/1.jpg'" />
+            <img :src="'/img/comparateur/alimentations/2.jpg'" />
+        </div>
         <section class="section">
             <p class="titreSection">
                 Qu'est ce que l'alimentation d'un ordinateur ?
@@ -248,6 +256,67 @@ export default {
             </div>
         </section>
     </div>
+    <div v-if="categorie === 3">
+        <p class="titre">Le processeur</p>
+        <div class="flex justify-around">
+            <img :src="'/img/comparateur/processeurs/1.jpg'" />
+            <img :src="'/img/comparateur/processeurs/2.jpg'" />
+        </div>
+
+        <section class="section">
+            <p class="titreSection">
+                Qu'est ce que le processeur d'un ordinateur ?
+            </p>
+            <div class="contenuSection">
+                <p>
+                    Un processeur ou CPU (Central Processing Unit) est le
+                    cerveau de votre ordinateur. C'est lui qui gère les échanges
+                    entre vos composants. Le processeur est très important car
+                    c'est la partie principale de l'ordinateur sans laquelle
+                    aucun calcul n'est possible sur votre machine.
+                </p>
+                <p></p>
+                <p>
+                    Pour choisir votre processeur vous allez prendre en
+                    considération son format, sa puissance.
+                </p>
+            </div>
+        </section>
+        <section class="section">
+            <p class="titreSection">Les différents formats de processeurs ?</p>
+            <div class="contenuSection">
+                <p>
+                    Deux grands fabriquants de processeurs se partagent le
+                    marché : Intel et AMD. Chacun dispose de son propre format
+                    (ex AMD4, Intel 1200). Pour une configuration moderne le
+                    choix va se faire entre ces deux fabricants. Les processeurs
+                    AMD et Intel d'aujourd'hui offrent des niveaux de
+                    performances comparables. Choisissez la marque qui
+                    correspond à vos critères de recherche en fonction de vos
+                    besoins.
+                </p>
+                <p>
+                    Le processeur s'insère dans la carte mère, il faut donc un
+                    compatibilé entre les deux composants. Si vous possèdez déjà
+                    une carte mère vous n'avez plus le choix dans le format de
+                    votre processeur.
+                </p>
+                <p></p>
+                <div class="border-2 text-center"></div>
+                <p></p>
+            </div>
+        </section>
+        <section class="section">
+            <p class="titreSection">La partie graphique du processeur</p>
+            <p></p>
+            <div class="liens"></div>
+        </section>
+        <section class="section">
+            <p class="titreSection"></p>
+            <p></p>
+            <div class="liens"></div>
+        </section>
+    </div>
 </template>
 
 <style scoped>
@@ -267,6 +336,9 @@ export default {
     font-size: xx-large;
     text-align: center;
     font: bold;
+    background-color: cornsilk;
+    border: solid 1px grey;
+    margin: 20px;
 }
 .section {
     margin: 10px;
@@ -294,5 +366,10 @@ export default {
     background-color: bisque;
     padding: 10px;
     margin: 1px;
+}
+
+img {
+    width: 30%;
+
 }
 </style>

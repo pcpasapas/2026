@@ -67,7 +67,8 @@ public function boot()
         <div v-if="categorie === 5">
         <a href="https://cssgradient.io/" target="blank">
             CSS Gradient</a>
-        <a href="https://www.bequiet.com/fr/psucalculator/quick" target="_blank">Evaluer la puissance nécessaire pour l'alimentation</a>
+        <a href="https://www.bequiet.com/fr/psucalculator/quick" target="_blank">
+            Evaluer la puissance nécessaire pour l'alimentation</a>
         </div>
     </div>
 </template>

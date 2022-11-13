@@ -9,7 +9,7 @@ export default {
 
 <template>
     <div class="composant" @click="toggleAgrandir">
-        <h3 v-if="composant.gamer == true" class="gamer">
+        <h3 v-if="composant.gamer == true" class="gamer rotate-12">
             GAMER
         </h3>
         <h3 v-if="composant.marque !== undefined">
@@ -34,7 +34,7 @@ export default {
         <h4 v-if="composant.taille_text !== undefined">
             {{ composant.taille_text }}
         </h4>
-        <h4 v-if="composant.format_cm !== ''">
+        <h4 v-if="composant.format_cm !== undefined">
             Carte mère : {{ composant.format_cm }}
         </h4>
         <h4 v-if="composant.taille !== undefined">
@@ -58,8 +58,10 @@ export default {
 .gamer {
     position: absolute;
     color: white;
-    padding: 1px;
-    margin-top: 3px;
+    z-index: 0;
+    padding: 5px;
+    margin-top: 10px;
+    margin-left: 235px;
     background: rgb(70, 251, 63);
     border-radius: 30px;
     background: radial-gradient(

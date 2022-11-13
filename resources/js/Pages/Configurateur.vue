@@ -9,6 +9,7 @@
         @composantRetirePanier="composantRetirePanier"
         :panier="panierReact"
         :loading="loading"
+        @click="categorieChoisie = ''"
     ></panierComponent>
     <!-- choix en fonction d'un jeu -->
     <div>

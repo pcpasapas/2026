@@ -48,6 +48,7 @@ export default {
                 .put('/panier/1', { categorie, undefined })
                 .then((response) => {
                     this.Panier.value = response.data
+                    
                     this.fnPrixTotalPanier
                 })
                 .catch((err) => console.log(err))
