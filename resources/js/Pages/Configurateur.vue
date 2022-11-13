@@ -143,7 +143,7 @@ export default {
     setup() {
         let panierReact = reactive({})
         let loading = ref()
-        let categorieChoisie =ref('')
+        let categorieChoisie = ref('')
 
         const mounted = onMounted(async () => {
             await axios.get('/panier').then((response) => {
@@ -158,7 +158,6 @@ export default {
             categorieProg,
             modelBDD
         ) => {
-
             await axios
                 .put('/panier/1', {
                     categorie,
@@ -232,6 +231,7 @@ export default {
 .liCategorie {
     margin-left: 20px;
     margin-right: 20px;
+    cursor: pointer;
 }
 .ulCategorie .a {
     margin-left: 10;
