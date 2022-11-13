@@ -11,7 +11,7 @@
 
         <!-- Scripts -->
         <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDFM7444NL"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDFM7444NL" defer></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -20,7 +20,7 @@
   gtag('config', 'G-BDFM7444NL');
 </script>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2401412736769800"
-     crossorigin="anonymous"></script>
+     crossorigin="anonymous" defer></script>
         @routes
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead

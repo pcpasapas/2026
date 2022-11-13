@@ -3,12 +3,14 @@
         :canLogin="canLogin"
         :canRegister="canRegister"
     ></headerComponent>
-    <img :src="'/img/composition hdd.jpg'" />
+    <img :src="'/img/compositionhdd.jpg'" alt="composition ordinateur" />
     <div class="menus">
         <div class="menu">
             <a href="/comparateur">
                 <p>Composants</p>
-                <p class="text-xs">En apprendre davantage sur le choix de vos composants</p>
+                <p class="text-xs">
+                    En apprendre davantage sur le choix de vos composants
+                </p>
             </a>
         </div>
         <div class="menu">
@@ -24,7 +26,8 @@
             <a href="/tutoriels">
                 <p>Tutoriels</p>
                 <p class="text-xs">
-                    Apprendre des astuces dans le montage d'un pc ainsi que dans la programmation
+                    Apprendre des astuces dans le montage d'un pc ainsi que dans
+                    la programmation
                 </p>
             </a>
         </div>
@@ -53,7 +56,6 @@ img {
 @media (max-width: 400px) {
     img {
         width: 90%;
-        height: 60%;
     }
 }
 .menus {
