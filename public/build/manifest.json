@@ -433,20 +433,20 @@
     "file": "assets/Accueil.60dfe757.css",
     "src": "resources/js/Pages/Accueil.css"
   },
-  "headerComponent.css": {
-    "file": "assets/headerComponent.88cf06f6.css",
-    "src": "headerComponent.css"
-  },
   "resources/js/Pages/Tutoriels.css": {
     "file": "assets/Tutoriels.18ca1ef9.css",
     "src": "resources/js/Pages/Tutoriels.css"
   },
-  "resources/js/Pages/Comparateur.css": {
-    "file": "assets/Comparateur.e60fb477.css",
-    "src": "resources/js/Pages/Comparateur.css"
-  },
   "resources/js/Pages/Configurateur.css": {
     "file": "assets/Configurateur.685b4fbb.css",
     "src": "resources/js/Pages/Configurateur.css"
+  },
+  "headerComponent.css": {
+    "file": "assets/headerComponent.88cf06f6.css",
+    "src": "headerComponent.css"
+  },
+  "resources/js/Pages/Comparateur.css": {
+    "file": "assets/Comparateur.e60fb477.css",
+    "src": "resources/js/Pages/Comparateur.css"
   }
 }
