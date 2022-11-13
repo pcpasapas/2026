@@ -41,6 +41,13 @@ img {
     margin: auto;
     width: 60%;
 }
+
+@media (max-width: 400px) {
+    img {
+        width: 90%;
+        height: 60%;
+    }
+}
 .menus {
     display: flex;
     flex-direction: row;
