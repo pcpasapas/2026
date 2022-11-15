@@ -11,4 +11,5 @@ class Categorie extends Model
     public function boitier () {
         return $this->hasMany(Boitier::class);
     }
+    
 }

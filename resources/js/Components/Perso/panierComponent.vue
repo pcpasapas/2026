@@ -40,7 +40,7 @@ export default {
         }
     },
 
-    mounted() {},
+    mounted() {console.log()},
 
     methods: {
         async retirerproduit(categorie) {
@@ -65,6 +65,7 @@ export default {
 <template>
     <div class="panier" v-if="fnPrixTotalPanier != 0.00">
         <p class="selection">Votre sélection</p>
+        <p class="text-xs" v-if="this.$page.props.user===null">Merci de vous connecter pour sauvegarder votre configuration</p>
 
         <div v-if="!Loading">
             <div v-if="this.Panier.value !== ''">
@@ -88,6 +89,7 @@ export default {
                                 </td>
 
                                 <td class="col2">
+                                    <p>{{ produit.marque }}</p>
                                     <p>{{ produit.name }}</p>
                                 </td>
                                 <td class="col3">{{ produit.prix / 100 }} €</td>
@@ -131,17 +133,18 @@ img {
     margin: 0;
 }
 .reset {
-    background-color: blueviolet;
+    background-color: blue;
     border-radius: 50%;
+    margin-top: 8px;
     cursor: pointer;
     color: white;
 }
 .composant {
-    border-bottom: 1px solid blueviolet;
-    border-top: 1px solid blueviolet;
+    border-bottom: 1px solid blue;
+    border-top: 1px solid blue;
 }
 .panier {
-    border: 5px solid blueviolet;
+    border: 5px solid blue;
     margin: 10px;
     text-align: center;
 }
@@ -155,7 +158,7 @@ img {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 .col1 {
     width: 100px;

@@ -9,9 +9,7 @@ export default {
 
 <template>
     <div class="composant" @click="toggleAgrandir">
-        <h3 v-if="composant.gamer == true" class="gamer rotate-12">
-            GAMER
-        </h3>
+        <h3 v-if="composant.gamer == true" class="gamer rotate-12">GAMER</h3>
         <h3 v-if="composant.marque !== undefined">
             {{ composant.marque }}
         </h3>
@@ -19,14 +17,17 @@ export default {
         <h4 v-if="composant.socket !== undefined">
             Socket : {{ composant.socket }}
         </h4>
-        <h4 v-if="composant.puissanceMini">
-            Puissance mini : {{ composant.puissanceMini }} Ghz
-        </h4>
-        <h4 v-if="composant.puissanceBoost">
-            Puissance boostée : {{ composant.puissanceBoost }} Ghz
+        <h4 v-if="composant.puissance_mini !== undefined">
+            Puissance mini, boostée : {{ composant.puissance_mini }} Ghz, {{ composant.puissance_boost }} Ghz
         </h4>
         <h4 v-if="composant.puissance !== undefined">
             Puissance : {{ composant.puissance }}
+        </h4>
+        <h4 v-if="composant.coeurs !== undefined">
+            Nombre de coeurs, threads : {{ composant.coeurs }}, {{ composant.thread }}
+        </h4>
+        <h4 v-if="composant.thread !== undefined">
+            Puissance max simulée : {{ (composant.coeurs * composant.puissance_boost).toFixed(2) }}
         </h4>
         <h4 v-if="composant.memoire !== undefined">
             Mémoire : {{ composant.memoire }}

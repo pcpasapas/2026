@@ -295,11 +295,17 @@ export default {
                     correspond à vos critères de recherche en fonction de vos
                     besoins.
                 </p>
+                <img
+                    class="mx-auto"
+                    :src="'/img/tutos/processeurs/proccartemere.jpg'"
+                />
                 <p>
                     Le processeur s'insère dans la carte mère, il faut donc un
-                    compatibilé entre les deux composants. Si vous possèdez déjà
-                    une carte mère vous n'avez plus le choix dans le format de
-                    votre processeur.
+                    compatibilité entre les deux composants. Il faut qu'ils
+                    aient le même "socket". Si vous possèdez déjà une carte mère
+                    vous n'avez pas le choix dans le format de votre processeur,
+                    il faut impérativement que le socket de votre processeur
+                    soit le même que celui de votre carte mère.
                 </p>
                 <p></p>
                 <div class="border-2 text-center"></div>
@@ -308,11 +314,16 @@ export default {
         </section>
         <section class="section">
             <p class="titreSection">La partie graphique du processeur</p>
-            <p></p>
+            <p>
+                Certains processeurs disposent d'une partie graphique ce qui
+                vous dispensera d'acheter une carte graphique indépendente.
+                Toutefois dans la majorité des cas pour une configuration
+                optimale il vaut mieux privilégier une carte graphique séparée.
+            </p>
             <div class="liens"></div>
         </section>
         <section class="section">
-            <p class="titreSection"></p>
+            <p class="titreSection">La puissance de votre processeur</p>
             <p></p>
             <div class="liens"></div>
         </section>
@@ -370,6 +381,5 @@ export default {
 
 img {
     width: 30%;
-
 }
 </style>

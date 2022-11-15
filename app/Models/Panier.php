@@ -32,5 +32,5 @@ class Panier extends Model
     public function hdd() {
         return $this->belongsTo(Hdd::class);
     }
-    protected $fillable = ['boitier_id', 'alimentation_id','processeur_id','carte_mere_id', 'ram_id', 'carte_graphique_id', 'ssd_id', 'hdd_id'];
+    protected $fillable = ['boitier_id', 'alimentation_id','processeur_id','carte_mere_id', 'ram_id', 'carte_graphique_id', 'ssd_id', 'hdd_id', 'user_id'];
 }

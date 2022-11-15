@@ -4,11 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Panier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PaniersController extends Controller
 {
     public function index () {
-        $panier = Panier::find(1);
+        if(json_decode(Auth::user() != null)) {
+            $panier = Panier::where('user_id', Auth::user()->id)->get();
+            if (json_decode($panier) == []){
+                Panier::create(['user_id' => Auth::user()->id]);
+                $panier = Panier::where('user_id', Auth::user()->id)->first();
+            } else {
+                $panier = Panier::where('user_id', Auth::user()->id)->first();
+            }
+        } else {
+            $panier = Panier::find(1);
+        }
         if ($panier->boitier) {
             $boitier = $panier->boitier;
             $categorie = $boitier->categorie;
@@ -69,7 +80,17 @@ class PaniersController extends Controller
     }
 
     public function add (Request $request) {
-        $panier = Panier::find(1);
+        if(json_decode(Auth::user() != null)) {
+            $panier = Panier::where('user_id', Auth::user()->id)->get();
+            if (json_decode($panier) == []){
+                Panier::create(['user_id' => Auth::user()->id]);
+                $panier = Panier::where('user_id', Auth::user()->id)->first();
+            } else {
+                $panier = Panier::where('user_id', Auth::user()->id)->first();
+            }
+        } else {
+            $panier = Panier::find(1);
+        }
         $cat = $request->categorie;
         $panier->update([$cat => $request->composant]);
 
