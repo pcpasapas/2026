@@ -433,6 +433,10 @@
     "file": "assets/Configurateur.45153bc1.css",
     "src": "resources/js/Pages/Configurateur.css"
   },
+  "headerComponent.css": {
+    "file": "assets/headerComponent.b3d2e1fa.css",
+    "src": "headerComponent.css"
+  },
   "resources/js/Pages/Accueil.css": {
     "file": "assets/Accueil.60dfe757.css",
     "src": "resources/js/Pages/Accueil.css"
@@ -444,9 +448,5 @@
   "resources/js/Pages/Tutoriels.css": {
     "file": "assets/Tutoriels.18ca1ef9.css",
     "src": "resources/js/Pages/Tutoriels.css"
-  },
-  "headerComponent.css": {
-    "file": "assets/headerComponent.b3d2e1fa.css",
-    "src": "headerComponent.css"
   }
 }
